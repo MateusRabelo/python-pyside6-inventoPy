@@ -1,11 +1,15 @@
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton
 from PySide6.QtCore import Qt
 
+from environmentVariables import LOGIN_STYLESHEET_PATH
+
 class LoginScreen(QWidget):
     def __init__(self, navigationController):
         super().__init__()
         self.navigationController = navigationController
+
         self.setupUserInterface()
+        self.setClassStyle()
 
     # to create the Login Screen
     def setupUserInterface(self):
@@ -14,11 +18,12 @@ class LoginScreen(QWidget):
 
 
         titleLabel =  QLabel("This will be the login screen", alignment=Qt.AlignCenter)
+        titleLabel.setObjectName("titleLabel")
 
-        userLabel = QLabel("Usuário: ")
+        userLabel = QLabel("Usuário")
         userLine = QLineEdit()
 
-        passwordLabel = QLabel("Senha: ")
+        passwordLabel = QLabel("Senha")
         passwordLine = QLineEdit()
 
         submitButton = QPushButton("Entrar")
@@ -34,3 +39,10 @@ class LoginScreen(QWidget):
         mainLayout.addWidget(passwordLine)
 
         mainLayout.addWidget(submitButton)
+
+
+
+    def setClassStyle(self):
+        # Carrega e aplica o arquivo QSS para estilização
+        with open(str(LOGIN_STYLESHEET_PATH), "r") as file:
+            self.setStyleSheet(file.read())

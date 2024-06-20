@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QApplication, QMainWindow, QGridLayout, QWidget, QLabel, QVBoxLayout, QPushButton
+from PySide6.QtWidgets import QMainWindow, QWidget, QLabel, QVBoxLayout, QPushButton
 from PySide6.QtCore import Qt
 
 from app.homeScreen import HomeScreen

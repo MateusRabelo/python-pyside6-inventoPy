@@ -1,13 +1,12 @@
 from PySide6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QPushButton, QWidget, QHBoxLayout
 from PySide6.QtGui import  QIcon
-from PySide6.QtCore import Qt
 
 from controllers.navigationController import NavigationController
 
 from app.homeScreen import HomeScreen
 from app.loginScreen import LoginScreen
 
-from environmentVariable import WINDOW_ICON_PATH
+from environmentVariables import WINDOW_ICON_PATH
 
 
 class MainWindow(QMainWindow):
@@ -16,7 +15,7 @@ class MainWindow(QMainWindow):
 
         #------------------------------------------------ window setting ------------------------------------------------
         self.setWindowTitle("InventoPy")
-        self.setGeometry(100, 100, 800, 600)
+        self.setGeometry(1, 1, 600, 400)
         self.icon = QIcon(str(WINDOW_ICON_PATH))
         self.setWindowIcon(self.icon)                                                                                                                            
 
@@ -66,7 +65,7 @@ class MainWindow(QMainWindow):
         self.mainLayout.addWidget(self.navigationController.get_stack())
 
     def fixAllSize(self):
-        self.adjustSize()
+        # self.adjustSize()
         self.setFixedSize(self.width(), self.height())
 
 
