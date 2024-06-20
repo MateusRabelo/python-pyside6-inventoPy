@@ -1,16 +1,24 @@
 from PySide6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QPushButton, QWidget, QHBoxLayout
+from PySide6.QtGui import  QIcon
 from PySide6.QtCore import Qt
+
 from controllers.navigationController import NavigationController
+
 from app.homeScreen import HomeScreen
 from app.loginScreen import LoginScreen
+
+from environmentVariable import WINDOW_ICON_PATH
+
 
 class MainWindow(QMainWindow):
     def __init__(self, parent: QWidget | None = None, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
-        # window setting
-        self.setWindowTitle("Presentation Screen")
+        #------------------------------------------------ window setting ------------------------------------------------
+        self.setWindowTitle("InventoPy")
         self.setGeometry(100, 100, 800, 600)
+        self.icon = QIcon(str(WINDOW_ICON_PATH))
+        self.setWindowIcon(self.icon)                                                                                                                            
 
         # central widget configuration
         self.centralWidget = QWidget()
@@ -63,7 +71,7 @@ class MainWindow(QMainWindow):
 
 
 if __name__ == "__main__":
-    app = QApplication([])
+    app = QApplication()
 
     window = MainWindow()
     window.show()
