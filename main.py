@@ -30,6 +30,7 @@ class MainWindow(QMainWindow):
         # class methods
         self.createSidebar()
         self.createScreens()
+        self.centerGenerationWindow()
 
     # making the sidebar
     def createSidebar(self):
@@ -37,36 +38,78 @@ class MainWindow(QMainWindow):
         # layout to create the sidebar widgets
         self.sidebar = QVBoxLayout()
 
-        # creating all necessary widgets
-        self.button_main = QPushButton("Main Window")
-        self.button_login = QPushButton("Login Screen")
+        #----------------------------------------------- SIDEBAR BUTTONS -----------------------------------------------
+        self.toShowMainButton = QPushButton("Main")
+
+        self.toShowLoginButton = QPushButton("Authentication")
+
+        self.toShowClientsButton = QPushButton("Clients")
+        self.toClientsRegisterButton = QPushButton("Clients Registration")
+
+        self.toShowColaboratorsButton = QPushButton("Colaborators")
+        self.toColaboratorsRegisterButton = QPushButton("Colaborators Registration")
+
+        self.toShowProductsButton = QPushButton("Products")
+        self.toAddProductsButton = QPushButton("<PRODUCTS ADD NONE>")
+
+        self.toShowSalesButton = QPushButton("Sales")
+
+        self.toShowSuppliersButton = QPushButton("Suppliers")
+
 
         # adding the widgtes 
-        self.sidebar.addWidget(self.button_main)
-        self.sidebar.addWidget(self.button_login)
+        self.sidebar.addWidget(self.toShowMainButton)
+
+        self.sidebar.addWidget(self.toShowLoginButton)
+
+        self.sidebar.addWidget(self.toShowClientsButton)
+        self.sidebar.addWidget(self.toClientsRegisterButton)
+        
+        self.sidebar.addWidget(self.toShowColaboratorsButton)
+        self.sidebar.addWidget(self.toColaboratorsRegisterButton)
+        
+        self.sidebar.addWidget(self.toShowProductsButton)
+        self.sidebar.addWidget(self.toAddProductsButton)
+        
+        self.sidebar.addWidget(self.toShowSalesButton)
+        
+        self.sidebar.addWidget(self.toShowSuppliersButton)
 
         # adding a layout to main layout
         self.mainLayout.addLayout(self.sidebar)
 
         # make buttons fucntionally
-        self.button_main.clicked.connect(lambda: self.navigationController.navigateTo("main_screen"))
-        self.button_login.clicked.connect(lambda: self.navigationController.navigateTo("login_screen"))
+        self.toShowMainButton.clicked.connect(lambda: self.navigationController.navigateTo("home_screen"))
+        self.toShowLoginButton.clicked.connect(lambda: self.navigationController.navigateTo("login_screen"))
 
     def createScreens(self):
-        # Cria e configura as telas
-        self.main_screen = HomeScreen(self.navigationController)
-        self.login_screen = LoginScreen(self.navigationController)
+        # create and configure the screens
+        self.homeScreen = HomeScreen(self.navigationController)
+        self.loginScreen = LoginScreen(self.navigationController)
+    
 
-        # Adiciona as telas ao controlador de navegação
-        self.navigationController.add_widget(self.main_screen, "main_screen")
-        self.navigationController.add_widget(self.login_screen, "login_screen")
 
-        # Adiciona o QStackedWidget ao layout principal
+        # add the screens to navigate controller
+        self.navigationController.add_widget(self.homeScreen, "home_screen")
+        self.navigationController.add_widget(self.loginScreen, "login_screen")
+
+        # add the stacked layout to main layout
         self.mainLayout.addWidget(self.navigationController.get_stack())
+
 
     def fixAllSize(self):
         # self.adjustSize()
         self.setFixedSize(self.width(), self.height())
+
+
+    def centerGenerationWindow(self):
+        # Centraliza a janela na tela
+        screen = QApplication.primaryScreen()
+        screen_geometry = screen.availableGeometry()
+        window_geometry = self.frameGeometry()
+        center_point = screen_geometry.center()
+        window_geometry.moveCenter(center_point)
+        self.move(window_geometry.topLeft())
 
 
 if __name__ == "__main__":
