@@ -6,7 +6,7 @@ from controllers.navigationController import NavigationController
 from app.homeScreen import HomeScreen
 from app.loginScreen import LoginScreen
 
-from environmentVariables import WINDOW_ICON_PATH
+from environment.envVariables import WINDOW_ICON_PATH
 
 
 class MainWindow(QMainWindow):

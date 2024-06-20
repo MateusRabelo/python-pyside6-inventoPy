@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton
 from PySide6.QtCore import Qt
 
-from environmentVariables import LOGIN_STYLESHEET_PATH
+from environment.envVariables import LOGIN_STYLESHEET_PATH
 
 class LoginScreen(QWidget):
     def __init__(self, navigationController):
