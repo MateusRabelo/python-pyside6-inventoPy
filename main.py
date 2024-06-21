@@ -50,7 +50,7 @@ class MainWindow(QMainWindow):
         self.sidebar = QVBoxLayout()
 
         # ----------------------------------------------- SIDEBAR BUTTONS -----------------------------------------------
-        self.toShowMainButton = QPushButton("Main")
+        self.toShowMainButton = QPushButton("Home")
 
         self.toShowLoginButton = QPushButton("Authentication")
 
