@@ -1,15 +1,25 @@
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton
+from PySide6.QtCore import Qt
+
 
 class ColaboratorsRegisterScreen(QWidget):
-    def __inti__(self, navigationController):
+    def __init__(self, navigationController):
         super().__init__()
 
         self.navigationController = navigationController
         self.setupUserInterface()
         self.setClassStyle()
 
-        def setupUserInterface(self):
-            ...
+    def setupUserInterface(self):
+        # define layout
+        mainLayout = QVBoxLayout()
+        self.setLayout(mainLayout)
 
-        def setClassStyle():
-            pass
+        # adding widgets
+        titleLabel = QLabel("This will be the Colaborators Register screen", alignment=Qt.AlignCenter)
+
+        # applying widgets
+        mainLayout.addWidget(titleLabel)
+
+    def setClassStyle(self):
+        ...
