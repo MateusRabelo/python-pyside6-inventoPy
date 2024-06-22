@@ -1,5 +1,7 @@
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QListWidget
 from PySide6.QtCore import Qt
+
+from db import database
 
 
 class ClientsScreen(QWidget):
@@ -11,15 +13,23 @@ class ClientsScreen(QWidget):
         self.setClassStyle()
 
     def setupUserInterface(self):
-        # define layout
         mainLayout = QVBoxLayout()
         self.setLayout(mainLayout)
 
-        # adding widgets
-        titleLabel = QLabel("This will be the Clients screen", alignment=Qt.AlignCenter)
+        titleLabel = QLabel("Registered Clients", alignment=Qt.AlignCenter)
 
-        # applying widgets
+        self.clientsList = QListWidget()
+
         mainLayout.addWidget(titleLabel)
+        mainLayout.addWidget(self.clientsList)
+
+        self.loadClients()
+
+    def loadClients(self):
+        users = database.getUsers()
+        self.clientsList.clear()
+        for user in users:
+            self.clientsList.addItem(f"ID: {user[0]},\nUSERNAME: {user[1]}\n")
 
 
     def setClassStyle(self):

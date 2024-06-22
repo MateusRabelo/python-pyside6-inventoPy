@@ -16,6 +16,8 @@ from app.productsAddScreen import AddProductsScreen
 
 from environment.envVariables import WINDOW_ICON_PATH
 
+from db import database
+
 
 class MainWindow(QMainWindow):
     def __init__(self, parent: QWidget | None = None, *args, **kwargs) -> None:
@@ -50,26 +52,27 @@ class MainWindow(QMainWindow):
         self.sidebar = QVBoxLayout()
 
         # ----------------------------------------------- SIDEBAR BUTTONS -----------------------------------------------
-        self.toShowMainButton = QPushButton("Home")
+        
+        self.toShowHomeButton = QPushButton("Home") # define home button
 
-        self.toShowLoginButton = QPushButton("Authentication")
+        self.toShowLoginButton = QPushButton("Authentication") # define login button
 
-        self.toShowClientsButton = QPushButton("Clients")
-        self.toClientsRegisterButton = QPushButton("Clients Registration")
+        self.toShowClientsButton = QPushButton("Clients") # define clients button
+        self.toClientsRegisterButton = QPushButton("Clients Registration") # define clients registration button
 
-        self.toShowColaboratorsButton = QPushButton("Colaborators")
-        self.toColaboratorsRegisterButton = QPushButton("Colaborators Registration")
+        self.toShowColaboratorsButton = QPushButton("Colaborators") # define colaborators button
+        self.toColaboratorsRegisterButton = QPushButton("Colaborators Registration") # define colaborators registration button
 
-        self.toShowProductsButton = QPushButton("Products")
-        self.toAddProductsButton = QPushButton("<PRODUCTS ADD NONE>")
+        self.toShowProductsButton = QPushButton("Products") # define products button
+        self.toAddProductsButton = QPushButton("<PRODUCTS ADD NONE>") 
 
-        self.toShowSalesButton = QPushButton("Sales")
+        self.toShowSalesButton = QPushButton("Sales") # define sales button
 
-        self.toShowSuppliersButton = QPushButton("Suppliers")
+        self.toShowSuppliersButton = QPushButton("Suppliers") # define suppliers button
 
 
-        # adding the widgtes 
-        self.sidebar.addWidget(self.toShowMainButton)
+        # adding the widgtes  
+        self.sidebar.addWidget(self.toShowHomeButton) 
 
         self.sidebar.addWidget(self.toShowLoginButton)
 
@@ -90,7 +93,7 @@ class MainWindow(QMainWindow):
         self.mainLayout.addLayout(self.sidebar)
 
         # make buttons fucntionally
-        self.toShowMainButton.clicked.connect(lambda: self.navigationController.navigateTo("home_screen"))
+        self.toShowHomeButton.clicked.connect(lambda: self.navigationController.navigateTo("home_screen"))
 
         self.toShowLoginButton.clicked.connect(lambda: self.navigationController.navigateTo("login_screen"))
 
@@ -172,6 +175,7 @@ class MainWindow(QMainWindow):
         windowGeometry.moveCenter(centrePoint) # move the center of the geoemtry to center of the screen
 
         self.move(windowGeometry.topLeft()) # move the top left of the window (pixel 0, 0), to the center of the geometry in the screen 
+
 
 
 if __name__ == "__main__":
