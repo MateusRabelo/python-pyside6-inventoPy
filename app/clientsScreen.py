@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QListWidget
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QListWidget, QTableWidget, QTableWidgetItem
 from PySide6.QtCore import Qt
 
 from db import database
@@ -18,18 +18,23 @@ class ClientsScreen(QWidget):
 
         titleLabel = QLabel("Registered Clients", alignment=Qt.AlignCenter)
 
-        self.clientsList = QListWidget()
+        # Configuração do QTableWidget
+        self.clientsTable = QTableWidget()
+        self.clientsTable.setColumnCount(2)  # Definindo o número de colunas
+        self.clientsTable.setHorizontalHeaderLabels(["ID", "Username"])
 
         mainLayout.addWidget(titleLabel)
-        mainLayout.addWidget(self.clientsList)
+        mainLayout.addWidget(self.clientsTable)
 
         self.loadClients()
 
     def loadClients(self):
-        users = database.getUsers()
-        self.clientsList.clear()
-        for user in users:
-            self.clientsList.addItem(f"ID: {user[0]},\nUSERNAME: {user[1]}\n")
+        users = database.getUsers()  # Obtém os usuários do banco de dados
+        self.clientsTable.setRowCount(len(users))  # Definindo o número de linhas
+
+        for row, user in enumerate(users):
+            self.clientsTable.setItem(row, 0, QTableWidgetItem(str(user[0])))
+            self.clientsTable.setItem(row, 1, QTableWidgetItem(user[1]))
 
 
     def setClassStyle(self):

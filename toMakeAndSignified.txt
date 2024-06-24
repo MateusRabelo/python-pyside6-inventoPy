@@ -1,0 +1,67 @@
+Arquivos e suas Possíveis Funções
+clientsRegisterScreen.py
+
+Tela para registro de novos clientes.
+Formulário para inserir informações do cliente: nome, endereço, telefone, e-mail, etc.
+Botões para salvar, cancelar e limpar o formulário.
+clientsScreen.py
+
+Tela para visualização e gerenciamento dos clientes cadastrados.
+Lista ou tabela com os clientes.
+Funções para editar, excluir e visualizar detalhes dos clientes.
+Busca e filtros para encontrar clientes específicos.
+colaboratorsRegisterScreen.py
+
+Tela para registro de novos colaboradores.
+Formulário para inserir informações do colaborador: nome, cargo, telefone, e-mail, etc.
+Botões para salvar, cancelar e limpar o formulário.
+colaboratorsScreen.py
+
+Tela para visualização e gerenciamento dos colaboradores cadastrados.
+Lista ou tabela com os colaboradores.
+Funções para editar, excluir e visualizar detalhes dos colaboradores.
+Busca e filtros para encontrar colaboradores específicos.
+homeScreen.py
+
+Tela inicial do sistema.
+Menu principal com opções de navegação para outras telas (clientes, colaboradores, produtos, etc.).
+Resumo ou dashboard com informações importantes (ex. produtos em estoque, vendas recentes, etc.).
+loginScreen.py
+
+Tela de login do sistema.
+Formulário para inserir nome de usuário e senha.
+Botão para realizar login.
+Opção para recuperação de senha, se aplicável.
+productsAddScreen.py
+
+Tela para adicionar novos produtos ao estoque.
+Formulário para inserir informações do produto: nome, descrição, categoria, preço, quantidade, fornecedor, etc.
+Botões para salvar, cancelar e limpar o formulário.
+productsScreen.py
+
+Tela para visualização e gerenciamento dos produtos no estoque.
+Lista ou tabela com os produtos.
+Funções para editar, excluir e visualizar detalhes dos produtos.
+Busca e filtros para encontrar produtos específicos.
+salesMonitoring.py
+
+Tela para monitoramento de vendas.
+Gráficos e relatórios de vendas.
+Indicadores de desempenho de vendas (ex. produtos mais vendidos, receitas por período, etc.).
+salesScreen.py
+
+Tela para registro e gerenciamento de vendas.
+Formulário para registrar uma nova venda: selecionar cliente, produtos, quantidade, preço, forma de pagamento, etc.
+Lista ou tabela com vendas realizadas.
+Funções para editar e visualizar detalhes das vendas.
+splashScreen.py
+
+Tela de splash (carregamento inicial) do sistema.
+Exibe uma tela de boas-vindas enquanto o sistema está carregando.
+Possivelmente exibe o logo do sistema e uma barra de progresso.
+suppliersScreen.py
+
+Tela para visualização e gerenciamento dos fornecedores cadastrados.
+Lista ou tabela com os fornecedores.
+Funções para editar, excluir e visualizar detalhes dos fornecedores.
+Busca e filtros para encontrar fornecedores específicos.

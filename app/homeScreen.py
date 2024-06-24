@@ -12,15 +12,17 @@ class HomeScreen(QWidget):
     def setupUserInterface(self):
         layout = QVBoxLayout()
 
-        label = QLabel("This will be the home screen", alignment=Qt.AlignCenter)
+        mainLabel = QLabel("InvetoPy - a melhor forma de gerenciar seu estoque!", alignment=Qt.AlignCenter)
 
-        button = QPushButton("Go to Login")
-        button.clicked.connect(self.go_to_login)
+        newsTitleLabel = QLabel("Últimas notícias")
 
-        layout.addWidget(label)
+        button = QPushButton("Fazer Login")
+        button.clicked.connect(self.toLoginPage)
+
+        layout.addWidget(mainLabel)
         layout.addWidget(button)
 
         self.setLayout(layout)
 
-    def go_to_login(self):
+    def toLoginPage(self):
         self.navigationController.navigateTo("login_screen")
