@@ -6,7 +6,7 @@ from db import database
 class LoginWindow(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setWindowTitle("Login")
+        self.setWindowTitle("InventoPy - Authentication")
         self.setGeometry(100, 100, 300, 150)  # Define a geometria da janela (largura, altura)
         self.centerDialog()  # Centraliza a janela na tela
         self.setupUserInterface()
