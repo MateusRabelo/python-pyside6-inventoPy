@@ -1,6 +1,8 @@
 # main.py
 from PySide6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QHBoxLayout, QPushButton, QWidget, QDialog
 from PySide6.QtGui import QIcon
+from PySide6.QtCore import Qt
+
 from controllers.navigationController import NavigationController
 from app.views.homeScreen import HomeScreen
 from app.views.clientsScreen import ClientsScreen
@@ -9,7 +11,7 @@ from app.views.productsScreen import ProductsScreen
 from app.views.salesScreen import SalesScreen
 from app.views.suppliersScreen import SuppliersScreen
 from environment.envVariables import WINDOW_ICON_PATH
-from authentication import LoginWindow
+from app.views.authentication import LoginWindow
 
 class MainWindow(QMainWindow):
     def __init__(self, parent: QWidget = None, *args, **kwargs) -> None:
@@ -87,12 +89,13 @@ if __name__ == "__main__":
     import sys
     app = QApplication(sys.argv)
 
-    # Inicializa a tela de login
     login_window = LoginWindow()
+    login_window.setWindowModality(Qt.ApplicationModal)  # Torna a janela modal para garantir que o foco permaneça nela
     if login_window.exec() == QDialog.Accepted:
-        # Inicializa a janela principal após a autenticação
         main_window = MainWindow()
         main_window.show()
         main_window.fixAllSize()
 
-    app.exec()
+        sys.exit(app.exec())  # Encerra a execução do código quando a janela principal for fechada
+    else:
+        QApplication.instance().quit()  # Fecha o aplicativo corretamente se o login não for autenticado
