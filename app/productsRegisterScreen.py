@@ -2,7 +2,7 @@ from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButt
 from PySide6.QtCore import Qt
 
 
-class AddProductsScreen(QWidget):
+class ProductsRegisterScreen(QWidget):
     def __init__(self, navigationController):
         super().__init__()
 

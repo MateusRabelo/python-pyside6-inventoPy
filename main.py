@@ -12,7 +12,7 @@ from app.colaboratorsScreen import ColaboratorsScreen
 from app.productsScreen import ProductsScreen
 from app.salesScreen import SalesScreen
 from app.suppliersScreen import SuppliersScreen
-from app.productsAddScreen import AddProductsScreen
+from app.productsRegisterScreen import ProductsRegisterScreen
 
 from environment.envVariables import WINDOW_ICON_PATH
 
@@ -125,7 +125,7 @@ class MainWindow(QMainWindow):
         self.colaboratorsRegisterScreen = ColaboratorsRegisterScreen(self.navigationController)
 
         self.productsScreen = ProductsScreen(self.navigationController)
-        self.productsRegisterScreen = AddProductsScreen(self.navigationController)
+        self.productsRegisterScreen = ProductsRegisterScreen(self.navigationController)
 
         self.salesScreen = SalesScreen(self.navigationController)
 
