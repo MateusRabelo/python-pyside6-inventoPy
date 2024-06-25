@@ -9,7 +9,7 @@ from app.views.productsScreen import ProductsScreen
 from app.views.salesScreen import SalesScreen
 from app.views.suppliersScreen import SuppliersScreen
 from environment.envVariables import WINDOW_ICON_PATH
-from login import LoginWindow
+from authentication import LoginWindow
 
 class MainWindow(QMainWindow):
     def __init__(self, parent: QWidget = None, *args, **kwargs) -> None:
