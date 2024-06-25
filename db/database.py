@@ -89,6 +89,12 @@ if __name__ == '__main__':
     addOrUpdateUser('johndoe', 'password123')
     addOrUpdateUser('asda', 'aa')
     addOrUpdateUser('asdffasf', 'asddsa')
+    addOrUpdateUser('admin', 'admin')
+    addOrUpdateUser('teste1', 'teste1')
+    addOrUpdateUser('test', 'test')
+    addOrUpdateUser('Mateus', 'Rabelo')
+    addOrUpdateUser('mateusaqles@gmail.com', '1232')
+    addOrUpdateUser(' ', '1232')
     
 
     # Exibir todos os usuários
