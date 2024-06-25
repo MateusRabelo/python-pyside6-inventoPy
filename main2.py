@@ -34,7 +34,7 @@ if __name__ == "__main__":
     splash.show()
 
     # Simular um carregamento demorado
-    time.sleep(3)
+    time.sleep(5)
 
     # Fechar a splash screen
     splash.close()
@@ -44,6 +44,8 @@ if __name__ == "__main__":
     login_window.setWindowModality(Qt.ApplicationModal)
     if login_window.exec() == QDialog.Accepted:
         main_window = MainWindow()
+
         main_window.show()
         main_window.fixAllSize()
+        
         sys.exit(app.exec())
