@@ -1,13 +1,13 @@
 
 QLabel#titleLabel {
-    font-size: 42px;
+    font-size: 30px;
     font-weight: bold;
     color: #f9f9f9;
 }
 
 
 QLabel {
-    font-size: 16px;
+    font-size: 20px;
     color: #f9f9f9;
 }
 
@@ -23,11 +23,12 @@ QLineEdit {
 
 QPushButton {
     background-color: #4CAF50;
-    color: white;
+    color: #f9f9f9;
     border: none;
     border-radius: 5px;
     padding: 10px;
     font-size: 16px;
+    font-weight: bold;
 }
 
 QPushButton:hover {

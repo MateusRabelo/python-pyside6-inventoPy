@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QDialog, QVBoxLayout, QLabel, QLineEdit, QPushButton, QMessageBox, QApplication, QSpacerItem, QHBoxLayout
+from PySide6.QtWidgets import QDialog, QHBoxLayout, QLabel, QLineEdit, QPushButton, QMessageBox, QApplication, QWidget, QVBoxLayout, QSpacerItem, QSizePolicy
 from PySide6.QtCore import Qt, QPoint
 from PySide6.QtGui import QPixmap, QIcon
 
@@ -18,46 +18,66 @@ class LoginWindow(QDialog):
         self.centerDialog()  # Centraliza a janela na tela
 
     def setupUserInterface(self):
-        mainLayout = QHBoxLayout()
+        mainLayout = QHBoxLayout()  # Usar QHBoxLayout como layout principal
         self.setLayout(mainLayout)
 
-        imageLoginLayout = QVBoxLayout()
-
-        imageLoginLabel = QLabel()
+        # Layout secundário 1 para a imagem
+        imageWidget = QWidget()
+        imageWidget.setFixedSize(500, 500)  # Definir tamanho fixo para o widget
+        imageLoginLabel = QLabel(imageWidget)
         imageLoginLabel.setPixmap(QPixmap(LOGIN_IMAGE_PATH))
-        spacerImageBottom = QSpacerItem(550,0)
+        imageLoginLabel.setGeometry(0, 0, 500, 500)  # Definir a posição e tamanho do QLabel dentro do widget
+        mainLayout.addWidget(imageWidget)
 
-        loginLayout = QVBoxLayout()
-        titleLabel = QLabel("Efetue o Login para continuar", alignment=Qt.AlignCenter)
-        spacerTitleBottom = QSpacerItem(400,20) 
+        # Layout secundário 2 para os demais widgets
+        loginWidget = QWidget()
+        loginWidget.setFixedSize(450, 500)  # Definir largura fixa para o widget
+        loginLayout = QVBoxLayout(loginWidget)
+        loginLayout.setContentsMargins(0, 0, 0, 0)  # Remover espaçamento interno
+        loginLayout.addSpacing(10)
+        # loginLayout.setAlignment(Qt.AlignVCenter)
+
+        loginLayout.addSpacerItem(QSpacerItem(0, 75, QSizePolicy.Minimum, QSizePolicy.Fixed))  # Adicionar um espaço de 100 pixels
+        titleLabel = QLabel("Faça seu Login", alignment=Qt.AlignLeft)
+        titleLabel.setObjectName("titleLabel")
+        # loginLayout.addSpacing(100)
+
+        # titleLabel.setGeometry(50, 50, 500, 300)
+        loginLayout.addWidget(titleLabel)
+
+        loginLayout.addSpacerItem(QSpacerItem(0, 50, QSizePolicy.Minimum, QSizePolicy.Fixed))  # Adicionar um espaço de 50 pixels
         self.usernameLabel = QLabel("Usuário")
+        loginLayout.addWidget(self.usernameLabel)
+
         self.usernameLine = QLineEdit()
+        loginLayout.addWidget(self.usernameLine)
+
         self.passwordLabel = QLabel("Senha")
+        loginLayout.addWidget(self.passwordLabel)
+
         self.passwordLine = QLineEdit()
-        self.passwordLine.setEchoMode(QLineEdit.Password)
+        loginLayout.addWidget(self.passwordLine)
+
+        loginLayout.addSpacerItem(QSpacerItem(0, 20, QSizePolicy.Minimum, QSizePolicy.Fixed))  # Adicionar um espaço de 20 pixels
+
         self.submitButton = QPushButton("Entrar")
+        self.submitButton.setMinimumWidth(150)
         self.submitButton.clicked.connect(self.handleLogin)
 
-        imageLoginLayout.addWidget(imageLoginLabel)
-        imageLoginLayout.addItem(spacerImageBottom)
+        loginLayout.addWidget(self.submitButton, alignment=Qt.AlignHCenter)
+        loginLayout.addSpacerItem(QSpacerItem(0, 100, QSizePolicy.Minimum, QSizePolicy.Expanding))  # Adicionar um espaço de 100 pixels
 
-        loginLayout.addWidget(titleLabel)
-        loginLayout.addItem(spacerTitleBottom)
-        loginLayout.addWidget(self.usernameLabel)
-        loginLayout.addWidget(self.usernameLine)
-        loginLayout.addWidget(self.passwordLabel)
-        loginLayout.addWidget(self.passwordLine)
-        loginLayout.addWidget(self.submitButton)
+        mainLayout.addWidget(loginWidget)
 
-        mainLayout.addLayout(imageLoginLayout)
-        mainLayout.addLayout(loginLayout)
+        # Adicionar espaçamento horizontal
+        loginLayout.setContentsMargins(50, 0, 50, 0)
 
     def handleLogin(self):
         username = self.usernameLine.text()
         password = self.passwordLine.text()
 
         if database.authUser(username, password):
-            QMessageBox.information(self, "Login Successful", "Welcome!")
+            # QMessageBox.information(self, "Login Successful", "Welcome!")
             self.accept()  # Aceita o diálogo
         else:
             QMessageBox.warning(self, "Login Failed", "Invalid username or password.")
