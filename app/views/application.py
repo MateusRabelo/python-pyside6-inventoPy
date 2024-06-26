@@ -1,4 +1,3 @@
-# main.py
 from PySide6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QHBoxLayout, QPushButton, QWidget, QDialog
 from PySide6.QtGui import QIcon
 from PySide6.QtCore import Qt
@@ -10,7 +9,9 @@ from app.views.colaboratorsScreen import ColaboratorsScreen
 from app.views.productsScreen import ProductsScreen
 from app.views.salesScreen import SalesScreen
 from app.views.suppliersScreen import SuppliersScreen
+
 from environment.envVariables import WINDOW_ICON_PATH
+
 from app.views.authentication import LoginWindow
 
 class MainWindow(QMainWindow):
