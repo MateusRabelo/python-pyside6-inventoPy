@@ -81,8 +81,8 @@ class MainWindow(QMainWindow):
         screen = QApplication.primaryScreen()
         screenGeometry = screen.availableGeometry()
         windowGeometry = self.frameGeometry()
-        centrePoint = screenGeometry.center()
-        windowGeometry.moveCenter(centrePoint)
+        centerPoint = screenGeometry.center()
+        windowGeometry.moveCenter(centerPoint)
         self.move(windowGeometry.topLeft())
 
 if __name__ == "__main__":

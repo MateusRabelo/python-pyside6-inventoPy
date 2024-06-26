@@ -1,22 +1,35 @@
-from PySide6.QtWidgets import QDialog, QVBoxLayout, QLabel, QLineEdit, QPushButton, QMessageBox, QApplication
-from PySide6.QtCore import Qt
-from environment.envVariables import LOGIN_STYLESHEET_PATH
+from PySide6.QtWidgets import QDialog, QVBoxLayout, QLabel, QLineEdit, QPushButton, QMessageBox, QApplication, QSpacerItem, QHBoxLayout
+from PySide6.QtCore import Qt, QPoint
+from PySide6.QtGui import QPixmap, QIcon
+
+from environment.envVariables import LOGIN_STYLESHEET_PATH, LOGIN_IMAGE_PATH, WINDOW_ICON_PATH
+
 from db import database
 
 class LoginWindow(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setWindowTitle("InventoPy - Authentication")
-        self.setGeometry(100, 100, 300, 150)  # Define a geometria da janela (largura, altura)
-        self.centerDialog()  # Centraliza a janela na tela
+        self.icon = QIcon(str(WINDOW_ICON_PATH))
+        self.setWindowIcon(self.icon)
+
         self.setupUserInterface()
         self.setClassStyle()
+        self.centerDialog()  # Centraliza a janela na tela
 
     def setupUserInterface(self):
-        mainLayout = QVBoxLayout()
+        mainLayout = QHBoxLayout()
         self.setLayout(mainLayout)
 
-        titleLabel = QLabel("This will be the login screen", alignment=Qt.AlignCenter)
+        imageLoginLayout = QVBoxLayout()
+
+        imageLoginLabel = QLabel()
+        imageLoginLabel.setPixmap(QPixmap(LOGIN_IMAGE_PATH))
+        spacerImageBottom = QSpacerItem(550,0)
+
+        loginLayout = QVBoxLayout()
+        titleLabel = QLabel("Efetue o Login para continuar", alignment=Qt.AlignCenter)
+        spacerTitleBottom = QSpacerItem(400,20) 
         self.usernameLabel = QLabel("Usuário")
         self.usernameLine = QLineEdit()
         self.passwordLabel = QLabel("Senha")
@@ -25,12 +38,19 @@ class LoginWindow(QDialog):
         self.submitButton = QPushButton("Entrar")
         self.submitButton.clicked.connect(self.handleLogin)
 
-        mainLayout.addWidget(titleLabel)
-        mainLayout.addWidget(self.usernameLabel)
-        mainLayout.addWidget(self.usernameLine)
-        mainLayout.addWidget(self.passwordLabel)
-        mainLayout.addWidget(self.passwordLine)
-        mainLayout.addWidget(self.submitButton)
+        imageLoginLayout.addWidget(imageLoginLabel)
+        imageLoginLayout.addItem(spacerImageBottom)
+
+        loginLayout.addWidget(titleLabel)
+        loginLayout.addItem(spacerTitleBottom)
+        loginLayout.addWidget(self.usernameLabel)
+        loginLayout.addWidget(self.usernameLine)
+        loginLayout.addWidget(self.passwordLabel)
+        loginLayout.addWidget(self.passwordLine)
+        loginLayout.addWidget(self.submitButton)
+
+        mainLayout.addLayout(imageLoginLayout)
+        mainLayout.addLayout(loginLayout)
 
     def handleLogin(self):
         username = self.usernameLine.text()
@@ -49,7 +69,8 @@ class LoginWindow(QDialog):
     def centerDialog(self):
         screen = QApplication.primaryScreen()
         screenGeometry = screen.availableGeometry()
-        dialogGeometry = self.frameGeometry()
+        windowGeometry = self.frameGeometry()
         centerPoint = screenGeometry.center()
-        dialogGeometry.moveCenter(centerPoint)
-        self.move(dialogGeometry.topLeft())
+        windowGeometry.moveCenter(centerPoint)
+        offset = screenGeometry.topLeft() - windowGeometry.topLeft()
+        self.move(windowGeometry.topLeft() - QPoint(150, 0))
