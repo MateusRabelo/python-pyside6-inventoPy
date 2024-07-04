@@ -1,0 +1,67 @@
+HomeScreen {
+    background-color: #ffffff;
+}
+
+
+
+QLabel#welcomeLabel {
+    font-size: 24px;
+    color: #f9f9f9;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+QLabel#topSalesLabel,
+QLabel#lastSalesLabel {
+    font-size: 18px;
+    color: #f9f9f9;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+QLabel#top1SalesLabel,
+QLabel#top2SalesLabel,
+QLabel#top3SalesLabel,
+QLabel#sale1Label,
+QLabel#sale2Label,
+QLabel#sale3Label {
+    font-size: 16px;
+    color: #f9f9f9;
+    text-align: center;
+}
+
+QLabel#newsTitleLabel {
+    font-size: 18px;
+    color: #f9f9f9;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+QLabel#news1Label,
+QLabel#news2Label,
+QLabel#news3Label {
+    font-size: 16px;
+    color: #f9f9f9;
+    text-align: center;
+}
+
+QPushButton {
+    background-color: #4CAF50;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #45a049;
+}
+
+QPushButton:pressed {
+    background-color: #3e8e41;
+}

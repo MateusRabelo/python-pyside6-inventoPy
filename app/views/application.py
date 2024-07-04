@@ -10,16 +10,16 @@ from app.views.productsScreen import ProductsScreen
 from app.views.salesScreen import SalesScreen
 from app.views.suppliersScreen import SuppliersScreen
 
-from environment.envVariables import WINDOW_ICON_PATH
+from environment.envVariables import WINDOW_ICON_PATH, APPLICATION_STYLESHEET_PATH
 
 from app.views.authentication import LoginWindow
+
 
 class MainWindow(QMainWindow):
     def __init__(self, parent: QWidget = None, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
-        self.setWindowTitle("InventoPy")
-        self.setGeometry(1, 1, 600, 400)
+        self.setWindowTitle("InventoPy - Gerenciador de estoque")
         self.icon = QIcon(str(WINDOW_ICON_PATH))
         self.setWindowIcon(self.icon)
 
@@ -29,9 +29,18 @@ class MainWindow(QMainWindow):
 
         self.navigationController = NavigationController()
 
+        self.setClassStyle()
+
         self.createSidebar()
         self.createScreens()
-        self.centerGenerationWindow()
+
+        self.showFullScreen()
+        self.setWindowFlags(Qt.Window | Qt.CustomizeWindowHint | Qt.WindowCloseButtonHint | Qt.WindowMinimizeButtonHint | Qt.WindowStaysOnTopHint)
+        
+        self.setFixedSize(self.size())  # Define um tamanho fixo para a janela
+
+        
+
 
     def createSidebar(self):
         self.sidebar = QVBoxLayout()
@@ -58,6 +67,7 @@ class MainWindow(QMainWindow):
         self.toShowSalesButton.clicked.connect(lambda: self.navigationController.navigateTo("sales_screen"))
         self.toShowSuppliersButton.clicked.connect(lambda: self.navigationController.navigateTo("suppliers_screen"))
 
+
     def createScreens(self):
         self.homeScreen = HomeScreen(self.navigationController)
         self.clientsScreen = ClientsScreen(self.navigationController)
@@ -75,8 +85,10 @@ class MainWindow(QMainWindow):
 
         self.mainLayout.addWidget(self.navigationController.get_stack())
 
+
     def fixAllSize(self):
         self.setFixedSize(self.width(), self.height())
+
 
     def centerGenerationWindow(self):
         screen = QApplication.primaryScreen()
@@ -85,6 +97,13 @@ class MainWindow(QMainWindow):
         centerPoint = screenGeometry.center()
         windowGeometry.moveCenter(centerPoint)
         self.move(windowGeometry.topLeft())
+
+
+    def setClassStyle(self):
+        # Carrega e aplica o arquivo QSS para estilização
+        with open(str(APPLICATION_STYLESHEET_PATH), "r") as file:
+            self.setStyleSheet(file.read())
+
 
 if __name__ == "__main__":
     import sys
@@ -95,7 +114,6 @@ if __name__ == "__main__":
     if login_window.exec() == QDialog.Accepted:
         main_window = MainWindow()
         main_window.show()
-        main_window.fixAllSize()
 
         sys.exit(app.exec())  # Encerra a execução do código quando a janela principal for fechada
     else:

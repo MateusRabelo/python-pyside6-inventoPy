@@ -66,6 +66,17 @@ class NewsPanel(QWidget):
 
         self.setStyleSheet("background-color: #8a2be2;")
 
+    def fixAllSize(self):
+        self.setFixedSize(self.width(), self.height())
+
+    def centerGenerationWindow(self):
+        screen = QApplication.primaryScreen()
+        screenGeometry = screen.availableGeometry()
+        windowGeometry = self.frameGeometry()
+        centerPoint = screenGeometry.center()
+        windowGeometry.moveCenter(centerPoint)
+        self.move(windowGeometry.topLeft())
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
