@@ -79,11 +79,6 @@ This project is licensed under the MIT License.
 ## Contact
 
 If you have any questions or need support, please contact us at inventopy@example.com.
-
 ___
-___
-___
-___
-
 
 > Note: This project is currently on pause. If you are looking for an active and developing inventory management system, we recommend you check out our other project, Bhub - Business Registration System.
