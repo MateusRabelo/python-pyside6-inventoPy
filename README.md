@@ -1,2 +1,3 @@
-# python-pyside6-inventoPy
-this is a team project to training our habillities 
+# InventoPy - Gestor de Estoque
+
+This project is currently on indefinite pause (but not dead)
