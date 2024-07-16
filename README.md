@@ -21,12 +21,12 @@ InventoPy is an inventory manager developed in Python. It is designed to help co
 1. Clone the InventoPy repository to your local development environment:
 
 ```shell
-git clone https://github.com/seu-usuario/inventopy.git
+git clone https://github.com/MateusRabelo/python-pyside6-inventoPy.git
 ```
 
 2. Enter the project folder
 ```shell
-cd directory/of/download/of/project
+cd directory/of/downloaded/project
 ```
 
 3. Create a virtual environment and activate it:
